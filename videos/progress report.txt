@@ -1,0 +1,79 @@
+﻿[FluidSim3D v1.0 is directly based on FluidSim v3.0 which is a rewrite of FluidSim v2.1; FluidSim v3 was quickly abandoned in favor of 3D so it is underdeveloped]
+
+[things in brackets were written significantly after the export was made]
+
+export0:
+11-7-15
+[trying to make a 3D cube]
+
+export1:
+11-7-15
+[still getting cylinders instead of cube]
+
+export2:
+11-8-15 3am
+I was trying to make a rotating 3D cube but instead I got this wobbling cylinder/sphere thing. must have made a mistake in my trig somewhere.
+
+export3:
+11-8-15 8pm
+after a day of work I got the spinning 3D cube working!
+
+export4:
+11-9-15
+I've added lots of new features in the last few hours. I can now run actual 3D simulations as well as pan and zoom the 3D view with the mouse. I also added the axis markers and box around the simulation area. There is not yet support for 3D collisions with objects but I already have the math for that worked out so its just a matter of time until it is functional (unless of course something goes horribly wrong)
+
+[something did go horribly wrong and it took the better part of a week to get the math working]
+
+export5:
+11-15-15
+3D collisions now work! well, I guess 'work' is a bit of an exaggeration seeing as collisions must be perfectly inelastic and I had to put the wall outside the area, but these things will be fixed soon. the hardest part of collisions was efficiently solving cubic equations. another improvement you can't see but speeds things up for me considerably is support for multi threading. both advancing the simulation and rendering can run on threads which makes everything go almost 4 times faster on my quad core. this also is one step closer to porting to CUDA and thus taking advantage of a GPU when I get one.
+
+export6:
+11-15-15
+it appears collisions work, at least inelastic ones with static objects. I still have plenty of optimizations to make and features to add before I can really do any useful simulations.
+
+export7:
+11-16-15
+I actually got elastic collisions working for static objects but as you can see moving objects are a problem. I know what the issue is, just not how to fix it. I could make it work for the case presented (because the triangles don't deform) but I need full functionality, not workarounds. What I need to know is the speed of the triangle at the point of impact. This will take a lot of math, exactly how much is impossible to say at this point.
+
+export8:
+11-22-15
+I took some time off for school (it seemed like a good idea at the time) but I finally got collisions working will fully moving and distorting triangles. I messed around with a few systems, the main one involving finding an axis of rotation but I found the most useful one to be this. I map the 3D point of collision to a 2D 1x1 square where (0, 0) is vertex 0 of the triangle, (1, 0) is vertex 1 and the entire top row is vertex 2. This way, to find the triangles 3D velocity at the point of collision all I need is those 2D cords and a simple formula. This new system also replaced my old way of determining if a collision takes place on or off a triangle.
+
+export9:
+11-24-15
+I have added support for importing .stl files, thus the more complex model which I made in blender. I couldn't find a suitable library for loading any 3D formats so, after messing around for a bit with blender integration I wrote my own .stl loader. stl is an extremely simple format, but it does use floating point numbers, which took some fiddling about with binary numbers to get right. The next step is to optimize collision detection a bit. every particle does a lot of math to find if it collides with every triangle, even if it is half the map away. this wasn't much of a problem when I only had a few triangles, but now I can import complex models it is a real pain. fixing this has proven to be a bit trickier then anticipated but I'm sure I'll get it.
+
+export10:
+11-25-15
+I'm working on my 3D renderer. With the tools I created for particle collisions I'm almost set up to write a ray-tracer but that would be a lot of work and rendering would be slow so for now, I'm opting for a less flashy z-buffering renderer. as you can see, z-buffering is not yet implemented (thus triangles are layered in an arbitrary order, rather from back to front) and also my triangle rasterizer has issues (note the horizontal one pixel lines). I think the problem with the rastorizer is just a type error and z-buffering is coming soon.
+
+export11:
+11-28-15
+Just got my new GTX 970 working so I've been playing with blender a bit. Now I'm back to my renderer. I got z-buffering working but it didn't look perfect so I was messing about with it when I got this cool glitch
+
+export12:
+11-28-15
+more glitch fun
+
+export13:
+11-28-15
+Z-buffering rendering now works. there are still a few rounding errors but they are not apparent in most cases. time to move on.
+
+export14:
+11-30-15
+I had some time at school today so I worked out the right way to rastorize and z-buffer a triangle with graph paper. I implemented it and it seems to work perfectly. I started keeping track of the force on every tri, which is what you see here. its short because the relatively high poly tesla was making it go at about 1fps, but I should be able to speed that up if I rastorize each tri into a 3D voxel map with each voxel starting a linked list of tri pointers. that way a pixel can very quickly check if it is close to the tri. and doesn't wast a lot of time running through every tri in the whole area.
+
+export15:
+12-1-15 (next month, but only a few hours after export14)
+I didn't do the full 3D rasterization but I did implement a secondary voxel map with an independent resolution to hold the start of linked lists of the collision walls in each voxel. This significantly improved performance (with the right settings I can pull 20fps with ok fluid res and a 16k poly collision mesh). The data structure is a bit complex with a sort of 2D, 2-way linked mesh and it will be a mess to implement with moving objects (which I haven't done yet) but it is worth it. this particular sim used a 16k poly version of my Tesla model S mesh, 500k voxel map and rendered at about 1fps. My renderer has performed beautifully and, by itself, it can do 40 fps with the same mesh running on only one core. I'm thinking about defining a color for each vertex instead of by the triangle so I can add smoothing and other cool effects.
+
+export16:
+12-2-15
+I've added a BUNCH of new features (mostly visual and program structure) which I'm sure I'll be showing off in my next export but for now I'm trying to get my perspective renderer to work.
+
+export17:
+12-6-15
+I haven't wretten any FluidSim updates recently. Does this mean I have developed a new appreciation for the outdoors and haven't made any improvements to FluidSim? Don't be silly. I have been doing so much coding I haven't had time to export and write. There are a lot of new features, the most prominent of which is that perspective rendering is now supported! No more ortho, at least not unless I want it as it is still of course a render option. Perspective is supported for both objects and voxel data (fluid) but I had a little issue with fluid rendering so I didn't show it. probably just a FOV issue. Unfortunately, even when it does work it is not optimized well and so really slows things down. I would improve it but I am about to start using matrices for 3D transformations (I don't use them at all now) and when I do, a lot of that low level rendering code will have to be rewritten. Another visually striking feature is the 3D text rendering. I made it using the custom written line-based text renderer I wrote last summer. I also added the ability to easily add a cylinder (this is what the bounding boxes are, and also what the text is made up of). Another important feature (in fact you could argue the most important) is the drag coefficient is now automatically calculated and displayed (the DC number). Its not right, but its there. to do this, I had to find the area of the objects ortho shadow in the direction of fluid flow (which I did with a raster render). I calculate the drag coefficient with a fairly simple formula using that and a few other factors. At this point, the only thing I can do is keep fiddling with all the settings and get it to calculate it for simple shapes with known drag as accurately as possible.
+
+

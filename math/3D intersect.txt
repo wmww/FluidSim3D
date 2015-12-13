@@ -1,0 +1,74 @@
+(bx-ax)*u*(1-v)+(cx-ax)*v+ax
+solve x=(x2-x1)*u*(1-v)+(x3-x1)*v+x1, y=(y2-y1)*u*(1-v)+(y3-y1)*v+y1, z=(z2-z1)*u*(1-v)+(z3-z1)*v+z1, x=(x5-x4)*t+x4, y=(y5-y4)*t+y4, z=(z5-z4)*t+z4
+
+sage code:
+var('clsn_x clsn_y clsn_z clsnu clsnv clsnt')
+var('obj1x obj1y obj1z obj2x obj2y obj2z obj3x obj3y obj3z prtclx prtcly prtclz velx vely velz')
+eq1=(obj2x-obj1x)*clsnu*(1-clsnv)+(obj3x-obj1x)*clsnv+obj1x==clsn_x
+eq2=(obj2y-obj1y)*clsnu*(1-clsnv)+(obj3y-obj1y)*clsnv+obj1y==clsn_y
+eq3=(obj2z-obj1z)*clsnu*(1-clsnv)+(obj3z-obj1z)*clsnv+obj1z==clsn_z
+eq4=(velx)*clsnt+prtclx==clsn_x
+eq5=(vely)*clsnt+prtcly==clsn_y
+eq6=(velz)*clsnt+prtclz==clsn_z
+solve([eq1, eq2, eq3, eq4, eq5, eq6], clsnt, clsn_x, clsn_y, clsn_z, clsnu, clsnv)
+
+sage output:
+[[clsnt == ((obj1z*obj2y - obj1y*obj2z)*obj3x - (obj1z*obj2x -
+obj1x*obj2z)*obj3y + (obj1y*obj2x - obj1x*obj2y)*obj3z - (obj1z*obj2y -
+obj1y*obj2z - (obj1z - obj2z)*obj3y + (obj1y - obj2y)*obj3z)*prtclx +
+(obj1z*obj2x - obj1x*obj2z - (obj1z - obj2z)*obj3x + (obj1x -
+obj2x)*obj3z)*prtcly - (obj1y*obj2x - obj1x*obj2y - (obj1y -
+obj2y)*obj3x + (obj1x - obj2x)*obj3y)*prtclz)/((obj1z*obj2y -
+obj1y*obj2z - (obj1z - obj2z)*obj3y + (obj1y - obj2y)*obj3z)*velx -
+(obj1z*obj2x - obj1x*obj2z - (obj1z - obj2z)*obj3x + (obj1x -
+obj2x)*obj3z)*vely + (obj1y*obj2x - obj1x*obj2y - (obj1y - obj2y)*obj3x
++ (obj1x - obj2x)*obj3y)*velz), clsn_x == -((obj1z*obj2x - obj1x*obj2z -
+(obj1z - obj2z)*obj3x + (obj1x - obj2x)*obj3z)*prtclx*vely -
+(obj1y*obj2x - obj1x*obj2y - (obj1y - obj2y)*obj3x + (obj1x -
+obj2x)*obj3y)*prtclx*velz - ((obj1z*obj2y - obj1y*obj2z)*obj3x -
+(obj1z*obj2x - obj1x*obj2z)*obj3y + (obj1y*obj2x - obj1x*obj2y)*obj3z +
+(obj1z*obj2x - obj1x*obj2z - (obj1z - obj2z)*obj3x + (obj1x -
+obj2x)*obj3z)*prtcly - (obj1y*obj2x - obj1x*obj2y - (obj1y -
+obj2y)*obj3x + (obj1x - obj2x)*obj3y)*prtclz)*velx)/((obj1z*obj2y -
+obj1y*obj2z - (obj1z - obj2z)*obj3y + (obj1y - obj2y)*obj3z)*velx -
+(obj1z*obj2x - obj1x*obj2z - (obj1z - obj2z)*obj3x + (obj1x -
+obj2x)*obj3z)*vely + (obj1y*obj2x - obj1x*obj2y - (obj1y - obj2y)*obj3x
++ (obj1x - obj2x)*obj3y)*velz), clsn_y == ((obj1z*obj2y - obj1y*obj2z -
+(obj1z - obj2z)*obj3y + (obj1y - obj2y)*obj3z)*prtcly*velx +
+(obj1y*obj2x - obj1x*obj2y - (obj1y - obj2y)*obj3x + (obj1x -
+obj2x)*obj3y)*prtcly*velz + ((obj1z*obj2y - obj1y*obj2z)*obj3x -
+(obj1z*obj2x - obj1x*obj2z)*obj3y + (obj1y*obj2x - obj1x*obj2y)*obj3z -
+(obj1z*obj2y - obj1y*obj2z - (obj1z - obj2z)*obj3y + (obj1y -
+obj2y)*obj3z)*prtclx - (obj1y*obj2x - obj1x*obj2y - (obj1y -
+obj2y)*obj3x + (obj1x - obj2x)*obj3y)*prtclz)*vely)/((obj1z*obj2y -
+obj1y*obj2z - (obj1z - obj2z)*obj3y + (obj1y - obj2y)*obj3z)*velx -
+(obj1z*obj2x - obj1x*obj2z - (obj1z - obj2z)*obj3x + (obj1x -
+obj2x)*obj3z)*vely + (obj1y*obj2x - obj1x*obj2y - (obj1y - obj2y)*obj3x
++ (obj1x - obj2x)*obj3y)*velz), clsn_z == ((obj1z*obj2y - obj1y*obj2z -
+(obj1z - obj2z)*obj3y + (obj1y - obj2y)*obj3z)*prtclz*velx -
+(obj1z*obj2x - obj1x*obj2z - (obj1z - obj2z)*obj3x + (obj1x -
+obj2x)*obj3z)*prtclz*vely + ((obj1z*obj2y - obj1y*obj2z)*obj3x -
+(obj1z*obj2x - obj1x*obj2z)*obj3y + (obj1y*obj2x - obj1x*obj2y)*obj3z -
+(obj1z*obj2y - obj1y*obj2z - (obj1z - obj2z)*obj3y + (obj1y -
+obj2y)*obj3z)*prtclx + (obj1z*obj2x - obj1x*obj2z - (obj1z -
+obj2z)*obj3x + (obj1x - obj2x)*obj3z)*prtcly)*velz)/((obj1z*obj2y -
+obj1y*obj2z - (obj1z - obj2z)*obj3y + (obj1y - obj2y)*obj3z)*velx -
+(obj1z*obj2x - obj1x*obj2z - (obj1z - obj2z)*obj3x + (obj1x -
+obj2x)*obj3z)*vely + (obj1y*obj2x - obj1x*obj2y - (obj1y - obj2y)*obj3x
++ (obj1x - obj2x)*obj3y)*velz), clsnu == ((obj1z*obj3y - obj1y*obj3z -
+(obj1z - obj3z)*prtcly + (obj1y - obj3y)*prtclz)*velx - (obj1z*obj3x -
+obj1x*obj3z - (obj1z - obj3z)*prtclx + (obj1x - obj3x)*prtclz)*vely +
+(obj1y*obj3x - obj1x*obj3y - (obj1y - obj3y)*prtclx + (obj1x -
+obj3x)*prtcly)*velz)/(((obj1z - obj2z)*obj3y - (obj1y - obj2y)*obj3z -
+(obj1z - obj2z)*prtcly + (obj1y - obj2y)*prtclz)*velx - ((obj1z -
+obj2z)*obj3x - (obj1x - obj2x)*obj3z - (obj1z - obj2z)*prtclx + (obj1x -
+obj2x)*prtclz)*vely + ((obj1y - obj2y)*obj3x - (obj1x - obj2x)*obj3y -
+(obj1y - obj2y)*prtclx + (obj1x - obj2x)*prtcly)*velz), clsnv ==
+((obj1z*obj2y - obj1y*obj2z - (obj1z - obj2z)*prtcly + (obj1y -
+obj2y)*prtclz)*velx - (obj1z*obj2x - obj1x*obj2z - (obj1z -
+obj2z)*prtclx + (obj1x - obj2x)*prtclz)*vely + (obj1y*obj2x -
+obj1x*obj2y - (obj1y - obj2y)*prtclx + (obj1x -
+obj2x)*prtcly)*velz)/((obj1z*obj2y - obj1y*obj2z - (obj1z - obj2z)*obj3y
++ (obj1y - obj2y)*obj3z)*velx - (obj1z*obj2x - obj1x*obj2z - (obj1z -
+obj2z)*obj3x + (obj1x - obj2x)*obj3z)*vely + (obj1y*obj2x - obj1x*obj2y
+- (obj1y - obj2y)*obj3x + (obj1x - obj2x)*obj3y)*velz)]]

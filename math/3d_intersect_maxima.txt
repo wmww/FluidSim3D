@@ -1,0 +1,46 @@
+/*
+var('clsn_x clsn_y clsn_z clsnu clsnv clsnt')
+var('obj1x obj1y obj1z obj2x obj2y obj2z obj3x obj3y obj3z')
+var('objd1x objd1y objd1z objd2x objd2y objd2z objd3x objd3y objd3z')
+var('prtclx prtcly prtclz velx vely velz')
+*/
+
+declare(prtcl_x, constant);
+declare(vel_x, constant);
+declare(obj1__x, constant);
+declare(obj2__x, constant);
+declare(obj3__x, constant);
+declare(objd1__x, constant);
+declare(objd2__x, constant);
+declare(objd3__x, constant);
+
+eq1: ((objd2__x*clsn_time+obj2__x)-(objd1__x*clsn_time+obj1__x))*tripos_x*(1-tripos_y)+((objd3__x*clsn_time+obj3__x)-(objd1__x*clsn_time+obj1__x))*tripos_y+(objd1__x*clsn_time+obj1__x)=clsn_x;
+eq4: (vel_x)*clsn_time+prtcl_x=clsn_x;
+
+declare(prtcl_y, constant);
+declare(vel_y, constant);
+declare(obj1__y, constant);
+declare(obj2__y, constant);
+declare(obj3__y, constant);
+declare(objd1__y, constant);
+declare(objd2__y, constant);
+declare(objd3__y, constant);
+
+eq2: ((objd2__y*clsn_time+obj2__y)-(objd1__y*clsn_time+obj1__y))*tripos_y*(1-tripos_y)+((objd3__y*clsn_time+obj3__y)-(objd1__y*clsn_time+obj1__y))*tripos_y+(objd1__y*clsn_time+obj1__y)=clsn_y;
+eq5: (vel_y)*clsn_time+prtcl_y=clsn_y;
+
+declare(prtcl_z, constant);
+declare(vel_z, constant);
+declare(obj1__z, constant);
+declare(obj2__z, constant);
+declare(obj3__z, constant);
+declare(objd1__z, constant);
+declare(objd2__z, constant);
+declare(objd3__z, constant);
+
+eq3: ((objd2__z*clsn_time+obj2__z)-(objd1__z*clsn_time+obj1__z))*tripos_z*(1-tripos_y)+((objd3__z*clsn_time+obj3__z)-(objd1__z*clsn_time+obj1__z))*tripos_y+(objd1__z*clsn_time+obj1__z)=clsn_z;
+eq6: (vel_z)*clsn_time+prtcl_z=clsn_z;
+
+solve([eq1, eq2, eq3, eq4, eq5, eq6]);
+
+

@@ -1,0 +1,225 @@
+
+0==
+(
+	+(pvd1.y*time-pv1.y)*(pvd2.z*time-pv2.z)
+	-(pvd1.z*time-pv1.z)*(pvd2.y*time-pv2.y)
+)
+*((vel.x*time+pos.x)-(wd.x*time-wv.x)) ///<- should be *((vel.x*time+pos.x)-(  [ - ]  wd.x*time  [ + ]   wv.x)), the rest of this VVV is wrong
+
++
+
+(
+	+(pvd1.z*time-pv1.z)*(pvd2.x*time-pv2.x)
+	-(pvd1.x*time-pv1.x)*(pvd2.z*time-pv2.z)
+)
+*((vel.y*time+pos.y)-(wd.y*time-wv.y))
+
++
+
+(
+	+(pvd1.x*time-pv1.x)*(pvd2.y*time-pv2.y)
+	-(pvd1.y*time-pv1.y)*(pvd2.x*time-pv2.x)
+)
+*((vel.y*time+pos.y)-(wd.y*time-wv.y))
+
+///-------------------------------------------------------------------
+
+0==
+(
+	+(pvd1.y*pvd2.z-pvd1.z*pvd2.y)*time^2 +(-pv1.y*pvd2.z-pv2.z*pvd1.y+pv1.z*pvd2.y+pv2.y*pvd1.z)*time +(pv1.y*pv2.z-pv1.z*pv2.y)
+	
+	//+(pvd1.y*time-pv1.y)*(pvd2.z*time-pv2.z)
+	//-(pvd1.z*time-pv1.z)*(pvd2.y*time-pv2.y)
+)
+*((vel.x-wd.x)*time+(pos.x+wv.x))
+//*((vel.x*time+pos.x)-(wd.x*time-wv.x))
+
++
+
+(
+	+(pvd1.z*time-pv1.z)*(pvd2.x*time-pv2.x)
+	-(pvd1.x*time-pv1.x)*(pvd2.z*time-pv2.z)
+)
+*((vel.y*time+pos.y)-(wd.y*time-wv.y))
+
++
+
+(
+	+(pvd1.x*time-pv1.x)*(pvd2.y*time-pv2.y)
+	-(pvd1.y*time-pv1.y)*(pvd2.x*time-pv2.x)
+)
+*((vel.y*time+pos.y)-(wd.y*time-wv.y))
+
+
+///-------------------------------------------------------------------
+
+0==
+(
+	+((pvd1.y*pvd2.z-pvd1.z*pvd2.y)*(vel.x-wd.x))*time^3 +((-pv1.y*pvd2.z-pv2.z*pvd1.y+pv1.z*pvd2.y+pv2.y*pvd1.z)*(vel.x-wd.x))*time^2 +((pv1.y*pv2.z-pv1.z*pv2.y)*(vel.x-wd.x))*time
+	+((pvd1.y*pvd2.z-pvd1.z*pvd2.y)*(pos.x+wv.x))*time^2 +(-pv1.y*pvd2.z-pv2.z*pvd1.y+pv1.z*pvd2.y+pv2.y*pvd1.z)*(pos.x+wv.x)*time +(pv1.y*pv2.z-pv1.z*pv2.y)*(pos.x+wv.x)
+	
+	//+(pvd1.y*time-pv1.y)*(pvd2.z*time-pv2.z)
+	//-(pvd1.z*time-pv1.z)*(pvd2.y*time-pv2.y)
+)
+*((vel.x-wd.x)*time+(pos.x+wv.x))
+//*((vel.x*time+pos.x)-(wd.x*time-wv.x))
+
++
+
+(
+	+(pvd1.z*time-pv1.z)*(pvd2.x*time-pv2.x)
+	-(pvd1.x*time-pv1.x)*(pvd2.z*time-pv2.z)
+)
+*((vel.y*time+pos.y)-(wd.y*time-wv.y))
+
++
+
+(
+	+(pvd1.x*time-pv1.x)*(pvd2.y*time-pv2.y)
+	-(pvd1.y*time-pv1.y)*(pvd2.x*time-pv2.x)
+)
+*((vel.y*time+pos.y)-(wd.y*time-wv.y))
+
+
+///-------------------------------------------------------------------
+
+0==
+(
+	+((pvd1.y*pvd2.z-pvd1.z*pvd2.y)*(vel.x-wd.x))*time^3
+	+((-pv1.y*pvd2.z-pv2.z*pvd1.y+pv1.z*pvd2.y+pv2.y*pvd1.z)*(vel.x-wd.x)+(pvd1.y*pvd2.z-pvd1.z*pvd2.y)*(pos.x+wv.x))*time^2
+	+((pv1.y*pv2.z-pv1.z*pv2.y)*(vel.x-wd.x)-pv1.y*pvd2.z-pv2.z*pvd1.y+pv1.z*pvd2.y+pv2.y*pvd1.z)*(pos.x+wv.x))*time^1
+	+(pv1.y*pv2.z-pv1.z*pv2.y)*(pos.x+wv.x)*time^0
+	
+	//+(pvd1.y*time-pv1.y)*(pvd2.z*time-pv2.z)
+	//-(pvd1.z*time-pv1.z)*(pvd2.y*time-pv2.y)
+)
+//*((vel.x*time+pos.x)-(wd.x*time-wv.x))
+
++
+
+(
+	+(pvd1.z*time-pv1.z)*(pvd2.x*time-pv2.x)
+	-(pvd1.x*time-pv1.x)*(pvd2.z*time-pv2.z)
+)
+*((vel.y*time+pos.y)-(wd.y*time-wv.y))
+
++
+
+(
+	+(pvd1.x*time-pv1.x)*(pvd2.y*time-pv2.y)
+	-(pvd1.y*time-pv1.y)*(pvd2.x*time-pv2.x)
+)
+*((vel.y*time+pos.y)-(wd.y*time-wv.y))
+
+
+///-------------------------------------------------------------------
+
+0==
++((pvd1.y*pvd2.z-pvd1.z*pvd2.y)*(vel.x-wd.x))*time^3
++((-pv1.y*pvd2.z-pv2.z*pvd1.y+pv1.z*pvd2.y+pv2.y*pvd1.z)*(vel.x-wd.x)+(pvd1.y*pvd2.z-pvd1.z*pvd2.y)*(pos.x+wv.x))*time^2
++((pv1.y*pv2.z-pv1.z*pv2.y)*(vel.x-wd.x)-pv1.y*pvd2.z-pv2.z*pvd1.y+pv1.z*pvd2.y+pv2.y*pvd1.z)*(pos.x+wv.x))*time^1
++(pv1.y*pv2.z-pv1.z*pv2.y)*(pos.x+wv.x)*time^0
+
++((pvd1.z*pvd2.x-pvd1.x*pvd2.z)*(vel.y-wd.y))*time^3
++((-pv1.z*pvd2.x-pv2.x*pvd1.z+pv1.x*pvd2.z+pv2.z*pvd1.x)*(vel.y-wd.y)+(pvd1.z*pvd2.x-pvd1.x*pvd2.z)*(pos.y+wv.y))*time^2
++((pv1.z*pv2.x-pv1.x*pv2.z)*(vel.y-wd.y)-pv1.z*pvd2.x-pv2.x*pvd1.z+pv1.x*pvd2.z+pv2.z*pvd1.x)*(pos.y+wv.y))*time^1
++(pv1.z*pv2.x-pv1.x*pv2.z)*(pos.y+wv.y)*time^0
+
++((pvd1.x*pvd2.y-pvd1.y*pvd2.x)*(vel.z-wd.z))*time^3
++((-pv1.x*pvd2.y-pv2.y*pvd1.x+pv1.y*pvd2.x+pv2.x*pvd1.y)*(vel.z-wd.z)+(pvd1.x*pvd2.y-pvd1.y*pvd2.x)*(pos.z+wv.z))*time^2
++((pv1.x*pv2.y-pv1.y*pv2.x)*(vel.z-wd.z)-pv1.x*pvd2.y-pv2.y*pvd1.x+pv1.y*pvd2.x+pv2.x*pvd1.y)*(pos.z+wv.z))*time^1
++(pv1.x*pv2.y-pv1.y*pv2.x)*(pos.z+wv.z)*time^0
+
+
+///-------------------------------------------------------------------
+
+0==
++((pvd1.y*pvd2.z-pvd1.z*pvd2.y)*(vel.x-wd.x))*time^3
++((-pv1.y*pvd2.z-pv2.z*pvd1.y+pv1.z*pvd2.y+pv2.y*pvd1.z)*(vel.x-wd.x)+(pvd1.y*pvd2.z-pvd1.z*pvd2.y)*(pos.x+wv.x))*time^2
++((pv1.y*pv2.z-pv1.z*pv2.y)*(vel.x-wd.x)-pv1.y*pvd2.z-pv2.z*pvd1.y+pv1.z*pvd2.y+pv2.y*pvd1.z)*(pos.x+wv.x))*time^1
++(pv1.y*pv2.z-pv1.z*pv2.y)*(pos.x+wv.x)*time^0
+
++((pvd1.z*pvd2.x-pvd1.x*pvd2.z)*(vel.y-wd.y))*time^3
++((-pv1.z*pvd2.x-pv2.x*pvd1.z+pv1.x*pvd2.z+pv2.z*pvd1.x)*(vel.y-wd.y)+(pvd1.z*pvd2.x-pvd1.x*pvd2.z)*(pos.y+wv.y))*time^2
++((pv1.z*pv2.x-pv1.x*pv2.z)*(vel.y-wd.y)-pv1.z*pvd2.x-pv2.x*pvd1.z+pv1.x*pvd2.z+pv2.z*pvd1.x)*(pos.y+wv.y))*time^1
++(pv1.z*pv2.x-pv1.x*pv2.z)*(pos.y+wv.y)*time^0
+
++((pvd1.x*pvd2.y-pvd1.y*pvd2.x)*(vel.z-wd.z))*time^3
++((-pv1.x*pvd2.y-pv2.y*pvd1.x+pv1.y*pvd2.x+pv2.x*pvd1.y)*(vel.z-wd.z)+(pvd1.x*pvd2.y-pvd1.y*pvd2.x)*(pos.z+wv.z))*time^2
++((pv1.x*pv2.y-pv1.y*pv2.x)*(vel.z-wd.z)-pv1.x*pvd2.y-pv2.y*pvd1.x+pv1.y*pvd2.x+pv2.x*pvd1.y)*(pos.z+wv.z))*time^1
++(pv1.x*pv2.y-pv1.y*pv2.x)*(pos.z+wv.z)*time^0
+
+///-------------------------------------------------------------------
+
+double a, b, c, d;
+
+double x1=pvd1.y*pvd2.z-pvd1.z*pvd2.y;
+double x2=vel.x-wd.x;
+double x3=-pv1.y*pvd2.z-pv2.z*pvd1.y+pv1.z*pvd2.y+pv2.y*pvd1.z;
+double x4=pv1.y*pv2.z-pv1.z*pv2.y;
+double x5=pos.x+wv.x;
+
+double y1=pvd1.z*pvd2.x-pvd1.x*pvd2.z;
+double y2=vel.y-wd.y;
+double y3=-pv1.z*pvd2.x-pv2.x*pvd1.z+pv1.x*pvd2.z+pv2.z*pvd1.x;
+double y4=pv1.z*pv2.x-pv1.x*pv2.z;
+double y5=pos.y+wv.y;
+
+double z1=pvd1.x*pvd2.y-pvd1.y*pvd2.x;
+double z2=vel.z-wd.z;
+double z3=-pv1.x*pvd2.y-pv2.y*pvd1.x+pv1.y*pvd2.x+pv2.x*pvd1.y;
+double z4=pv1.x*pv2.y-pv1.y*pv2.x;
+double z5=pos.z+wv.z;
+
+a=+x1*x2*time^3
++(x3*x2+x1*x5)*time^2
++(x4*x2+x3*x5)*time^1
++x4*x5*time^0
+
++((pvd1.z*pvd2.x-pvd1.x*pvd2.z)*(vel.y-wd.y))*time^3
++((-pv1.z*pvd2.x-pv2.x*pvd1.z+pv1.x*pvd2.z+pv2.z*pvd1.x)*(vel.y-wd.y)+(pvd1.z*pvd2.x-pvd1.x*pvd2.z)*(pos.y+wv.y))*time^2
++((pv1.z*pv2.x-pv1.x*pv2.z)*(vel.y-wd.y)-pv1.z*pvd2.x-pv2.x*pvd1.z+pv1.x*pvd2.z+pv2.z*pvd1.x)*(pos.y+wv.y))*time^1
++(pv1.z*pv2.x-pv1.x*pv2.z)*(pos.y+wv.y)*time^0
+
++((pvd1.x*pvd2.y-pvd1.y*pvd2.x)*(vel.z-wd.z))*time^3
++((-pv1.x*pvd2.y-pv2.y*pvd1.x+pv1.y*pvd2.x+pv2.x*pvd1.y)*(vel.z-wd.z)+(pvd1.x*pvd2.y-pvd1.y*pvd2.x)*(pos.z+wv.z))*time^2
++((pv1.x*pv2.y-pv1.y*pv2.x)*(vel.z-wd.z)-pv1.x*pvd2.y-pv2.y*pvd1.x+pv1.y*pvd2.x+pv2.x*pvd1.y)*(pos.z+wv.z))*time^1
++(pv1.x*pv2.y-pv1.y*pv2.x)*(pos.z+wv.z)*time^0
+
+
+///-------------------------------------------------------------------
+
+double a, b, c, d;
+double p, q, r, s;
+double t;
+
+double x1=pvd1.y*pvd2.z-pvd1.z*pvd2.y;
+double x2=vel.x-wd.x;
+double x3=-pv1.y*pvd2.z-pv2.z*pvd1.y+pv1.z*pvd2.y+pv2.y*pvd1.z;
+double x4=pv1.y*pv2.z-pv1.z*pv2.y;
+double x5=pos.x+wv.x;
+
+double y1=pvd1.z*pvd2.x-pvd1.x*pvd2.z;
+double y2=vel.y-wd.y;
+double y3=-pv1.z*pvd2.x-pv2.x*pvd1.z+pv1.x*pvd2.z+pv2.z*pvd1.x;
+double y4=pv1.z*pv2.x-pv1.x*pv2.z;
+double y5=pos.y+wv.y;
+
+double z1=pvd1.x*pvd2.y-pvd1.y*pvd2.x;
+double z2=vel.z-wd.z;
+double z3=-pv1.x*pvd2.y-pv2.y*pvd1.x+pv1.y*pvd2.x+pv2.x*pvd1.y;
+double z4=pv1.x*pv2.y-pv1.y*pv2.x;
+double z5=pos.z+wv.z;
+
+a=x1*x2+y1*y2+z1*z2;
+b=x3*x2+x1*y5+y3*y2+y1*y5+z3*z2+z1*z5;
+c=x4*x2+x3*x5+y4*y2+y3*y5+z4*z2+z3*z5;
+d=x4*x5+y4*y5+z4*z5;
+
+p=-b/(3.0*a);
+q=pow(p, 3.0)+(b*c-3.0*a*d)/(6.0*pow(a, 2.0));
+r=c/(3.0*a);
+s=(r-p*p);
+s*=s*s;
+
+t=pow(q+pow(q*q+s, 0.5), 1.0/3.0)+pow(q-pow(q*q+s, 0.5), 1.0/3.0)+p;
