@@ -8,8 +8,8 @@
 #include "FluidSim3D.h"
 
 const double AREA_SIZE_SCALE=1;
-//const int RNDR_X=1280, RNDR_Y=720;
-const int RNDR_X=800, RNDR_Y=800;
+const int RNDR_X=1280, RNDR_Y=720;
+//const int RNDR_X=800, RNDR_Y=800;
 
 const RGBpix bkndClr= {64, 64, 64};
 WidapSfmlWindow window;
@@ -152,10 +152,10 @@ void init()
 	//sim.loadStl("models/wedge.stl", Vctr3<double>(dim.x/2, dim.y/2, 0), dim.z/16.0);
 	//sim.loadStl("models/three_objects.stl", Vctr3<double>(dim.x/2, dim.y/2, 0), dim.z*1.1/16.0, clr(0, 0, 255));
 	//sim.loadStl("models/cube.stl", Vctr3<double>(dim.x/2, dim.y/2, 0), dim.z*1.1/16.0, clr(0, 0, 255));
-	sim.loadStl("models/tesla.stl", Vctr3<double>(dim.x*0.5, dim.y*0.5, dim.z*0.3), 1, clr(128, 0, 255));
+	sim.loadStl("../models/tesla.stl", Vctr3<double>(dim.x*0.5, dim.y*0.5, dim.z*0.3), 1, clr(128, 0, 255));
 	//sim.loadStl("models/tilted cube.stl", Vctr3<double>(dim.x*0.5, dim.y*0.75, dim.z*0.5), 6, clr(0, 255, 0));
-	sim.loadStl("models/straight cube.stl", Vctr3<double>(dim.x*0.5, dim.y*0.25, dim.z*0.5), 6, clr(255, 128, 0));
-	sim.loadStl("models/sphere_64_32.stl", Vctr3<double>(dim.x*0.5, dim.y*0.75, dim.z*0.5), 6, clr(0, 255, 128));
+	sim.loadStl("../models/straight cube.stl", Vctr3<double>(dim.x*0.5, dim.y*0.25, dim.z*0.5), 6, clr(255, 128, 0));
+	sim.loadStl("../models/sphere_64_32.stl", Vctr3<double>(dim.x*0.5, dim.y*0.75, dim.z*0.5), 6, clr(0, 255, 128));
 	//sim.loadStl("models/sphere_half_64_32.stl", Vctr3<double>(dim.x*0.5, dim.y*0.5, dim.z*0.5), 6, clr(0, 255, 0));
 	
 	//sim.addCollisionWall(Vctr3<double>(0.6, 1.1, 1.1)*dim, Vctr3<double>(0.5, 1.1, 0.0)*dim, Vctr3<double>(0.5, 0.3, 0.0)*dim);
@@ -242,7 +242,7 @@ void iteration()
 			}
 		}
 		
-		if ((window.lDwn() || window.mDwn() || window.rDwn()) && window.mouse().y>0)
+		if ((window.lDwn() || window.mDwn() || window.rDwn()) && window.mouseLoc().y>0)
 		{
 			camRotDZ=-window.mouseDlta().x*0.25;
 			camRotDX=window.mouseDlta().y*0.25;
@@ -275,7 +275,7 @@ void iteration()
 		
 	//camZoom=clamp(camZoom, 0.01, 50);
 	
-	sim.advance();
+	//sim.advance();
 	
 	sim.cam->rot=Vctr3<double>(camRotX, 0, camRotZ);
 	sim.cam->pos=Vctr3<double>(-sin(deg2rad(camRotZ))*sin(deg2rad(camRotX))*camZoom, cos(deg2rad(camRotZ))*sin(deg2rad(camRotX))*camZoom, -cos(deg2rad(camRotX))*camZoom);
