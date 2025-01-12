@@ -1,0 +1,192 @@
+# depslib dependency file v1.0
+1442296468 source:/home/william/c++/Widap_includes/WidapCV_implementation/ShapeFinder.cpp
+	"../WidapCV.h"
+
+1446867958 /home/william/c++/Widap_includes/WidapCV.h
+	"WidapStd.h"
+	"WidapImage.h"
+	"WidapColors.h"
+
+1461372704 /home/william/c++/Widap_includes/WidapStd.h
+	<windows.h>
+	<stdlib.h>
+	<math.h>
+
+1449042811 /home/william/c++/Widap_includes/WidapImage.h
+	"WidapStd.h"
+	"WidapColors.h"
+	<stdio.h>
+	<iostream>
+	<string.h>
+
+1446630016 /home/william/c++/Widap_includes/WidapColors.h
+	"WidapStd.h"
+
+1438991302 source:/home/william/c++/Widap_includes/WidapCV_implementation/WidapCV_mscl.cpp
+	"../WidapCV.h"
+
+1449042726 source:/home/william/c++/Widap_includes/WidapImage.cpp
+	"WidapImage.h"
+
+1447483302 source:/home/william/c++/Widap_includes/WidapSfmlWindow.cpp
+	"WidapSfmlWindow.h"
+
+1453101515 /home/william/c++/Widap_includes/WidapSfmlWindow.h
+	"WidapWindowBase.h"
+	<SFML/Graphics.hpp>
+
+1443672372 source:/home/william/c++/Widap_includes/WidapTimer.cpp
+	"WidapTimer.h"
+
+1453606970 /home/william/c++/Widap_includes/WidapTimer.h
+	<iostream>
+	<unistd.h>
+
+1448263364 source:/home/william/c++/FluidSim3D/FluidSim3D.cpp
+	"FluidSim3D.h"
+	<thread>
+	<sys/sysinfo.h>
+	"../Widap_includes/WidapMath.h"
+
+1448253365 /home/william/c++/FluidSim3D/FluidSim3D.h
+	"../Widap_includes/WidapStd.h"
+	"../Widap_includes/WidapImage.h"
+	"Vctr3.h"
+	<mutex>
+
+1448264865 source:/home/william/c++/FluidSim3D/main.cpp
+	"../Widap_includes/WidapStd.h"
+	"../Widap_includes/WidapImage.h"
+	"../Widap_includes/WidapSfmlWindow.h"
+	"../Widap_includes/WidapTimer.h"
+	<unistd.h>
+	"FluidSim3D.h"
+
+1448258806 /home/william/c++/FluidSim3D/Vctr3.h
+	<math.h>
+
+1446947017 source:/home/william/c++/FluidSim3D/Vctr3.cpp
+	"Vctr3.h"
+
+1447585730 source:/home/william/c++/Widap_includes/WidapMath.cpp
+	<cstdlib>
+	<iostream>
+	<math.h>
+	<vector>
+
+1447565967 /home/william/c++/Widap_includes/WidapMath.h
+	"WidapStd.h"
+
+1451639869 source:/home/william/c++/FluidSim3D/src/FluidSim3D.cpp
+	"FluidSim3D.h"
+	<thread>
+	<sys/sysinfo.h>
+	"../../Widap_includes/WidapMath.h"
+	<fstream>
+
+1451561476 /home/william/c++/FluidSim3D/src/FluidSim3D.h
+	"../../Widap_includes/WidapStd.h"
+	"../../Widap_includes/WidapImage.h"
+	"../../Widap_includes/Scene3D.h"
+	"../../Widap_includes/Vctr3.h"
+	<mutex>
+
+1448415579 /home/william/c++/FluidSim3D/src/Vctr3.h
+	<math.h>
+
+1461134456 source:/home/william/c++/FluidSim3D/src/main.cpp
+	"../../Widap_includes/WidapStd.h"
+	"../../Widap_includes/WidapImage.h"
+	"../../Widap_includes/WidapSfmlWindow.h"
+	"../../Widap_includes/WidapTimer.h"
+	<unistd.h>
+	"FluidSim3D.h"
+
+1449403365 source:/home/william/c++/Widap_includes/Scene3D.cpp
+	"Scene3D.h"
+
+1451552591 /home/william/c++/Widap_includes/Scene3D.h
+	"Vctr3.h"
+	"WidapImage.h"
+
+1450258832 /home/william/c++/Widap_includes/Vctr3.h
+	"WidapStd.h"
+	<iostream>
+
+1451561476 source:/home/william/c++/FluidSim3D/src/Object.cpp
+	"FluidSim3D.h"
+	"../../Widap_includes/WidapMath.h"
+
+1451554619 source:/home/william/c++/widap_base/Scene3D.cpp
+	"Scene3D.h"
+	<limits.h>
+
+1451552591 /home/william/c++/widap_base/Scene3D.h
+	"Vctr3.h"
+	"WidapImage.h"
+
+1450258832 /home/william/c++/widap_base/Vctr3.h
+	"WidapStd.h"
+	<iostream>
+
+1461372704 /home/william/c++/widap_base/WidapStd.h
+	<windows.h>
+	<stdlib.h>
+	<math.h>
+
+1449042811 /home/william/c++/widap_base/WidapImage.h
+	"WidapStd.h"
+	"WidapColors.h"
+	<stdio.h>
+	<iostream>
+	<string.h>
+
+1446630016 /home/william/c++/widap_base/WidapColors.h
+	"WidapStd.h"
+
+1461480894 source:/home/william/c++/widap_base/WidapImage.cpp
+	"WidapImage.h"
+
+1447585730 source:/home/william/c++/widap_base/WidapMath.cpp
+	<cstdlib>
+	<iostream>
+	<math.h>
+	<vector>
+
+1453009500 source:/home/william/c++/widap_base/WidapSfmlWindow.cpp
+	"WidapSfmlWindow.h"
+	<iostream>
+
+1453101515 /home/william/c++/widap_base/WidapSfmlWindow.h
+	"WidapWindowBase.h"
+	<SFML/Graphics.hpp>
+
+1453606970 source:/home/william/c++/widap_base/WidapTimer.cpp
+	"WidapTimer.h"
+
+1453606970 /home/william/c++/widap_base/WidapTimer.h
+	<iostream>
+	<unistd.h>
+
+1453102216 /home/william/c++/Widap_includes/WidapWindowBase.h
+	"WidapStd.h"
+	"WidapImage.h"
+	"Vctr2.h"
+
+1453006091 /home/william/c++/Widap_includes/Vctr2.h
+	"WidapStd.h"
+	<iostream>
+
+1453102216 /home/william/c++/widap_base/WidapWindowBase.h
+	"WidapStd.h"
+	"WidapImage.h"
+	"Vctr2.h"
+
+1453006091 /home/william/c++/widap_base/Vctr2.h
+	"WidapStd.h"
+	<iostream>
+
+1453009590 source:/home/william/c++/widap_base/WidapWindowBase.cpp
+	"WidapWindowBase.h"
+	<iostream>
+

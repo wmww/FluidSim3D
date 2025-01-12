@@ -1,0 +1,414 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_layout_file>
+	<FileVersion major="1" minor="0" />
+	<ActiveTarget name="Release" />
+	<File name="src/FluidSim3D.h" open="0" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="285" topLine="0" />
+		</Cursor>
+		<Folding>
+			<Collapse line="114" />
+			<Collapse line="118" />
+			<Collapse line="122" />
+		</Folding>
+	</File>
+	<File name="../widap_base/WidapTimer.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="17" topLine="0" />
+		</Cursor>
+		<Folding>
+			<Collapse line="3" />
+			<Collapse line="10" />
+			<Collapse line="15" />
+			<Collapse line="34" />
+			<Collapse line="44" />
+			<Collapse line="52" />
+		</Folding>
+	</File>
+	<File name="../widap_base/WidapStd.h" open="0" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="279" topLine="0" />
+		</Cursor>
+		<Folding>
+			<Collapse line="4" />
+			<Collapse line="15" />
+			<Collapse line="20" />
+			<Collapse line="65" />
+			<Collapse line="72" />
+			<Collapse line="79" />
+			<Collapse line="86" />
+			<Collapse line="93" />
+			<Collapse line="100" />
+			<Collapse line="110" />
+			<Collapse line="120" />
+			<Collapse line="130" />
+			<Collapse line="140" />
+			<Collapse line="150" />
+			<Collapse line="160" />
+			<Collapse line="165" />
+			<Collapse line="173" />
+			<Collapse line="180" />
+			<Collapse line="187" />
+			<Collapse line="197" />
+			<Collapse line="207" />
+			<Collapse line="217" />
+			<Collapse line="227" />
+		</Folding>
+	</File>
+	<File name="../widap_base/WidapImage.h" open="0" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="390" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="../widap_base/WidapImage.cpp" open="0" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="53979" topLine="15" />
+		</Cursor>
+		<Folding>
+			<Collapse line="7" />
+			<Collapse line="14" />
+			<Collapse line="88" />
+			<Collapse line="92" />
+			<Collapse line="123" />
+			<Collapse line="139" />
+			<Collapse line="165" />
+			<Collapse line="216" />
+			<Collapse line="227" />
+			<Collapse line="248" />
+			<Collapse line="269" />
+			<Collapse line="290" />
+			<Collapse line="306" />
+			<Collapse line="317" />
+			<Collapse line="328" />
+			<Collapse line="354" />
+			<Collapse line="368" />
+			<Collapse line="409" />
+			<Collapse line="430" />
+			<Collapse line="466" />
+			<Collapse line="517" />
+			<Collapse line="538" />
+			<Collapse line="579" />
+			<Collapse line="620" />
+			<Collapse line="646" />
+			<Collapse line="702" />
+			<Collapse line="746" />
+			<Collapse line="792" />
+			<Collapse line="823" />
+			<Collapse line="839" />
+			<Collapse line="855" />
+			<Collapse line="874" />
+			<Collapse line="895" />
+			<Collapse line="946" />
+			<Collapse line="977" />
+			<Collapse line="1013" />
+			<Collapse line="1039" />
+			<Collapse line="1060" />
+			<Collapse line="1101" />
+			<Collapse line="1122" />
+			<Collapse line="1143" />
+			<Collapse line="1169" />
+			<Collapse line="1195" />
+			<Collapse line="1211" />
+			<Collapse line="1237" />
+			<Collapse line="1258" />
+			<Collapse line="1294" />
+			<Collapse line="1330" />
+			<Collapse line="1371" />
+			<Collapse line="1412" />
+			<Collapse line="1453" />
+			<Collapse line="1469" />
+			<Collapse line="1495" />
+			<Collapse line="1511" />
+			<Collapse line="1537" />
+			<Collapse line="1553" />
+			<Collapse line="1584" />
+			<Collapse line="1613" />
+			<Collapse line="1664" />
+			<Collapse line="1675" />
+			<Collapse line="1687" />
+			<Collapse line="1697" />
+			<Collapse line="1711" />
+			<Collapse line="1715" />
+			<Collapse line="1721" />
+			<Collapse line="1726" />
+			<Collapse line="1734" />
+			<Collapse line="1737" />
+			<Collapse line="1746" />
+			<Collapse line="1751" />
+			<Collapse line="1759" />
+			<Collapse line="1765" />
+			<Collapse line="1767" />
+			<Collapse line="1775" />
+			<Collapse line="1781" />
+			<Collapse line="1785" />
+			<Collapse line="1786" />
+			<Collapse line="1787" />
+			<Collapse line="1794" />
+			<Collapse line="1795" />
+			<Collapse line="1804" />
+			<Collapse line="1812" />
+			<Collapse line="1813" />
+			<Collapse line="1814" />
+			<Collapse line="1821" />
+			<Collapse line="1822" />
+			<Collapse line="1830" />
+			<Collapse line="1877" />
+			<Collapse line="1895" />
+			<Collapse line="1899" />
+			<Collapse line="1905" />
+			<Collapse line="1924" />
+			<Collapse line="2015" />
+			<Collapse line="2022" />
+			<Collapse line="2024" />
+			<Collapse line="2029" />
+			<Collapse line="2031" />
+			<Collapse line="2039" />
+			<Collapse line="2060" />
+			<Collapse line="2172" />
+			<Collapse line="2239" />
+			<Collapse line="2338" />
+			<Collapse line="2357" />
+			<Collapse line="2361" />
+			<Collapse line="2368" />
+			<Collapse line="2376" />
+			<Collapse line="2380" />
+			<Collapse line="2387" />
+			<Collapse line="2396" />
+			<Collapse line="2401" />
+			<Collapse line="2403" />
+			<Collapse line="2413" />
+			<Collapse line="2420" />
+			<Collapse line="2433" />
+			<Collapse line="2443" />
+			<Collapse line="2455" />
+			<Collapse line="2460" />
+			<Collapse line="2464" />
+			<Collapse line="2468" />
+			<Collapse line="2470" />
+			<Collapse line="2483" />
+			<Collapse line="2490" />
+			<Collapse line="2500" />
+			<Collapse line="2508" />
+			<Collapse line="2516" />
+			<Collapse line="2530" />
+			<Collapse line="2547" />
+			<Collapse line="2555" />
+			<Collapse line="2560" />
+			<Collapse line="2583" />
+			<Collapse line="2586" />
+			<Collapse line="2604" />
+			<Collapse line="2609" />
+			<Collapse line="2616" />
+			<Collapse line="2623" />
+			<Collapse line="2659" />
+			<Collapse line="2664" />
+		</Folding>
+	</File>
+	<File name="src/main.cpp" open="0" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="6130" topLine="10" />
+		</Cursor>
+		<Folding>
+			<Collapse line="41" />
+			<Collapse line="45" />
+			<Collapse line="53" />
+			<Collapse line="56" />
+			<Collapse line="84" />
+			<Collapse line="94" />
+			<Collapse line="104" />
+			<Collapse line="114" />
+			<Collapse line="194" />
+			<Collapse line="328" />
+			<Collapse line="339" />
+			<Collapse line="350" />
+			<Collapse line="386" />
+			<Collapse line="393" />
+			<Collapse line="405" />
+			<Collapse line="412" />
+		</Folding>
+	</File>
+	<File name="../widap_base/WidapWindowBase.cpp" open="0" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="299" topLine="0" />
+		</Cursor>
+		<Folding>
+			<Collapse line="4" />
+			<Collapse line="28" />
+			<Collapse line="35" />
+			<Collapse line="40" />
+			<Collapse line="42" />
+			<Collapse line="47" />
+			<Collapse line="54" />
+			<Collapse line="56" />
+			<Collapse line="60" />
+			<Collapse line="66" />
+			<Collapse line="73" />
+		</Folding>
+	</File>
+	<File name="../widap_base/WidapSfmlWindow.h" open="0" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1263" topLine="0" />
+		</Cursor>
+		<Folding>
+			<Collapse line="5" />
+			<Collapse line="12" />
+		</Folding>
+	</File>
+	<File name="src/FluidSim3D.cpp" open="0" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="266" topLine="642" />
+		</Cursor>
+	</File>
+	<File name="../widap_base/Scene3D.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="43" topLine="0" />
+		</Cursor>
+		<Folding>
+			<Collapse line="8" />
+			<Collapse line="21" />
+		</Folding>
+	</File>
+	<File name="../widap_base/WidapSfmlWindow.cpp" open="0" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="5094" topLine="0" />
+		</Cursor>
+		<Folding>
+			<Collapse line="7" />
+			<Collapse line="15" />
+			<Collapse line="20" />
+			<Collapse line="23" />
+			<Collapse line="30" />
+			<Collapse line="67" />
+			<Collapse line="76" />
+			<Collapse line="84" />
+			<Collapse line="100" />
+			<Collapse line="109" />
+			<Collapse line="119" />
+			<Collapse line="129" />
+			<Collapse line="151" />
+			<Collapse line="166" />
+			<Collapse line="177" />
+			<Collapse line="182" />
+			<Collapse line="186" />
+			<Collapse line="202" />
+			<Collapse line="213" />
+			<Collapse line="218" />
+			<Collapse line="230" />
+			<Collapse line="234" />
+			<Collapse line="254" />
+			<Collapse line="256" />
+			<Collapse line="261" />
+			<Collapse line="270" />
+			<Collapse line="272" />
+			<Collapse line="277" />
+			<Collapse line="294" />
+			<Collapse line="296" />
+			<Collapse line="310" />
+			<Collapse line="370" />
+		</Folding>
+	</File>
+	<File name="../widap_base/WidapColors.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="4666" topLine="201" />
+		</Cursor>
+		<Folding>
+			<Collapse line="7" />
+		</Folding>
+	</File>
+	<File name="../widap_base/Vctr3.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="55" topLine="0" />
+		</Cursor>
+		<Folding>
+			<Collapse line="6" />
+			<Collapse line="11" />
+			<Collapse line="18" />
+			<Collapse line="25" />
+			<Collapse line="30" />
+			<Collapse line="35" />
+			<Collapse line="40" />
+			<Collapse line="46" />
+			<Collapse line="51" />
+			<Collapse line="57" />
+			<Collapse line="63" />
+			<Collapse line="69" />
+			<Collapse line="75" />
+			<Collapse line="84" />
+			<Collapse line="90" />
+			<Collapse line="99" />
+			<Collapse line="108" />
+			<Collapse line="114" />
+			<Collapse line="120" />
+			<Collapse line="126" />
+			<Collapse line="132" />
+			<Collapse line="138" />
+			<Collapse line="145" />
+			<Collapse line="151" />
+			<Collapse line="157" />
+			<Collapse line="166" />
+			<Collapse line="171" />
+			<Collapse line="176" />
+			<Collapse line="181" />
+			<Collapse line="186" />
+			<Collapse line="191" />
+			<Collapse line="197" />
+			<Collapse line="202" />
+			<Collapse line="210" />
+			<Collapse line="216" />
+			<Collapse line="224" />
+			<Collapse line="232" />
+			<Collapse line="242" />
+			<Collapse line="254" />
+			<Collapse line="264" />
+			<Collapse line="275" />
+		</Folding>
+	</File>
+	<File name="../widap_base/Scene3D.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="9287" topLine="9" />
+		</Cursor>
+		<Folding>
+			<Collapse line="4" />
+			<Collapse line="24" />
+			<Collapse line="32" />
+			<Collapse line="36" />
+			<Collapse line="43" />
+			<Collapse line="55" />
+			<Collapse line="68" />
+			<Collapse line="74" />
+			<Collapse line="96" />
+			<Collapse line="126" />
+			<Collapse line="138" />
+			<Collapse line="167" />
+			<Collapse line="172" />
+			<Collapse line="180" />
+			<Collapse line="188" />
+			<Collapse line="209" />
+			<Collapse line="216" />
+			<Collapse line="252" />
+			<Collapse line="261" />
+			<Collapse line="272" />
+			<Collapse line="285" />
+			<Collapse line="298" />
+			<Collapse line="315" />
+			<Collapse line="352" />
+			<Collapse line="367" />
+			<Collapse line="433" />
+			<Collapse line="460" />
+			<Collapse line="487" />
+			<Collapse line="619" />
+			<Collapse line="762" />
+			<Collapse line="771" />
+		</Folding>
+	</File>
+	<File name="src/Object.cpp" open="0" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="2564" topLine="41" />
+		</Cursor>
+		<Folding>
+			<Collapse line="4" />
+			<Collapse line="160" />
+		</Folding>
+	</File>
+	<EditorTabsLayout layout="@layout2|name=dummy;caption=;state=2098174;dir=3;layer=0;row=0;pos=0;prop=100000;bestw=571;besth=410;minw=571;minh=410;maxw=-1;maxh=-1;floatx=-1;floaty=-1;floatw=-1;floath=-1|" />
+</CodeBlocks_layout_file>

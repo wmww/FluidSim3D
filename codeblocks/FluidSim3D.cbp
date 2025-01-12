@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="FluidSim3D" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Debug">
+				<Option output="FluidSim3D_debug" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Debug/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-g" />
+				</Compiler>
+			</Target>
+			<Target title="Release">
+				<Option output="FluidSim3D" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Release/" />
+				<Option type="0" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-O2" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+				</Linker>
+			</Target>
+			<Target title="Release_term">
+				<Option output="FluidSim3D" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Release/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-O2" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+				</Linker>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-O3" />
+			<Add option="-Wall" />
+		</Compiler>
+		<Linker>
+			<Add option="-lsfml-window" />
+			<Add option="-lsfml-graphics" />
+			<Add option="-lsfml-system" />
+			<Add option="-pthread" />
+		</Linker>
+		<Unit filename="../widap_base/Scene3D.cpp" />
+		<Unit filename="../widap_base/Scene3D.h" />
+		<Unit filename="../widap_base/Vctr2.h" />
+		<Unit filename="../widap_base/Vctr3.h" />
+		<Unit filename="../widap_base/WidapColors.h" />
+		<Unit filename="../widap_base/WidapImage.cpp" />
+		<Unit filename="../widap_base/WidapImage.h" />
+		<Unit filename="../widap_base/WidapMath.cpp" />
+		<Unit filename="../widap_base/WidapMath.h" />
+		<Unit filename="../widap_base/WidapSfmlWindow.cpp" />
+		<Unit filename="../widap_base/WidapSfmlWindow.h" />
+		<Unit filename="../widap_base/WidapStd.h" />
+		<Unit filename="../widap_base/WidapTimer.cpp" />
+		<Unit filename="../widap_base/WidapTimer.h" />
+		<Unit filename="../widap_base/WidapWindowBase.cpp" />
+		<Unit filename="../widap_base/WidapWindowBase.h" />
+		<Unit filename="src/FluidSim3D.cpp" />
+		<Unit filename="src/FluidSim3D.h" />
+		<Unit filename="src/Object.cpp" />
+		<Unit filename="src/main.cpp" />
+		<Extensions>
+			<envvars />
+			<code_completion />
+			<debugger />
+			<lib_finder disable_auto="1" />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>
