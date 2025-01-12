@@ -8,8 +8,7 @@
 #include "FluidSim3D.h"
 
 const double AREA_SIZE_SCALE=1;
-//const int RNDR_X=1280, RNDR_Y=720;
-const int RNDR_X=640, RNDR_Y=640;
+const int RNDR_X=1080, RNDR_Y=720;
 
 const RGBpix bkndClr= {64, 64, 64};
 WidapSfmlWindow window;
@@ -70,7 +69,7 @@ void init()
 	
 	///window init
 	
-	window.open(RNDR_X+424, RNDR_Y+24, PROG_NAME);
+	window.open(RNDR_X+424, RNDR_Y+48, PROG_NAME);
 	
 	usleep(40000);
 	window.clrFill(bkndClr);
@@ -334,7 +333,7 @@ void iteration()
 	
 	displayData();
 	
-	window.trnsfrFromImg(&sim.img, mkXY(12, 12));
+	window.trnsfrFromImg(&sim.img, mkXY(12, window.getHght() - sim.img.getHght() - 12));
 	
 	if (saveImg)
 	{
@@ -349,8 +348,12 @@ void iteration()
 
 void displayData()
 {
-	TextStyle style0, style1;
+	TextStyle shortcutHintStyle, style0, style1;
 	char text[400];
+
+	shortcutHintStyle.height = 10;
+	shortcutHintStyle.weight = 1;
+	shortcutHintStyle.color = clr(255, 255, 255);
 	
 	style0.height=14;
 	style0.weight=1;
@@ -359,6 +362,11 @@ void displayData()
 	style1.height=14;
 	style1.weight=2;
 	style1.color=clr(0, 0, 255);
+
+	window.setLoc(mkXY(12, window.getHght() - sim.img.getHght() - 36));
+	window.text(
+		"mouse drag=rotate view, mouse scroll=zoom, Ctrl+S=save frame, F=toggle fluid, L=toggle flow lines, Space=toggle simulation",
+		shortcutHintStyle);
 	
 	window.setLoc(mkXY(sim.img.getWdth()+24, window.getHght()-12));
 	sim.img.setLoc(mkXY(20, sim.img.getHght()-10));
