@@ -5,3 +5,5 @@
 *.so
 *.dylib
 *.dll
+*.bmp
+build
