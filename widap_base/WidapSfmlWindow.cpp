@@ -185,7 +185,7 @@ void WidapSfmlWindow::rndrText(char txt, double pixHgh, RGBpix clr, double weigh
 	{
 		sf::Text text(txt, font, pixHgh);
 		text.setPosition(loc.x, dim.y-loc.y-pixHgh*oversize);
-		text.setColor(sf::Color(clr.r, clr.g, clr.b, 255));
+		text.setFillColor(sf::Color(clr.r, clr.g, clr.b, 255));
 		if (weight>1.9)
 			text.setStyle(sf::Text::Bold);
 		text.setCharacterSize(pixHgh*oversize);
