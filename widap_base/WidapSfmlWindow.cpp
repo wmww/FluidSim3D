@@ -2,7 +2,6 @@
 #include <iostream>
 
 bool WidapSfmlWindow::firstInstance=1;
-sf::Font WidapSfmlWindow::font;
 char WidapSfmlWindow::key2char[127];
 
 /*
@@ -17,18 +16,13 @@ WidapSfmlWindow::WidapSfmlWindow()
 	
 	dataRGBA=0;
 	
+	if (!font.loadFromFile(FONT_PATH))
+	{
+		std::cout << ">> font failed to load <<\n";
+	}
+
 	if (firstInstance)
 	{
-		if
-		(
-			!font.loadFromFile("/usr/share/fonts/truetype/ubuntu-font-family/UbuntuMono-R.ttf") &&
-			!font.loadFromFile("/usr/share/fonts/truetype/freefont/FreeMono.ttf") &&
-			!font.loadFromFile("/usr/share/fonts/TTF/DejaVuSans.ttf")
-		)
-		{
-			std::cout << ">> font failed to load <<\n";
-		}
-		
 		int i;
 
 		for (i=0; i<127; ++i)

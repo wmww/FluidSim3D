@@ -34,11 +34,11 @@ public:
 	
 private:
 	sf::RenderWindow windowObj;
-	
+
 	static bool firstInstance;
-	static sf::Font font;
 	static char key2char[127];
-	
+
+	sf::Font font;
 	RGBApix *dataRGBA;
 	sf::Texture texture;
 	

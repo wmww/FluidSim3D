@@ -1,7 +1,7 @@
-#include "../../Widap_includes/WidapStd.h"
-#include "../../Widap_includes/WidapImage.h"
-#include "../../Widap_includes/WidapSfmlWindow.h"
-#include "../../Widap_includes/WidapTimer.h"
+#include "../widap_base/WidapStd.h"
+#include "../widap_base/WidapImage.h"
+#include "../widap_base/WidapSfmlWindow.h"
+#include "../widap_base/WidapTimer.h"
 
 #include <unistd.h>
 

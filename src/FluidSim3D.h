@@ -1,9 +1,9 @@
 #pragma once
 
-#include "../../Widap_includes/WidapStd.h"
-#include "../../Widap_includes/WidapImage.h"
-#include "../../Widap_includes/Scene3D.h"
-#include "../../Widap_includes/Vctr3.h"
+#include "../widap_base/WidapStd.h"
+#include "../widap_base/WidapImage.h"
+#include "../widap_base/Scene3D.h"
+#include "../widap_base/Vctr3.h"
 #include <mutex>
 
 const char PROG_NAME[]="FluidSim v4.0";

@@ -1,7 +1,7 @@
 #include "FluidSim3D.h"
 #include <thread> //used for calling threads
 #include <sys/sysinfo.h> //for finding free system memory to make sure I have enough
-#include "../../Widap_includes/WidapMath.h"
+#include "../widap_base/WidapMath.h"
 #include <fstream> //for loading stl files
 
 FluidSim3::FluidSim3()

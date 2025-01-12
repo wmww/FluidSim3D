@@ -1,5 +1,5 @@
 #include "FluidSim3D.h"
-#include "../../Widap_includes/WidapMath.h"
+#include "../widap_base/WidapMath.h"
 
 FluidSim3::Object::Object(FluidSim3 * simPtr, const char * objName, RGBpix objClr)
 {
