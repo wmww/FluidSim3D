@@ -13,6 +13,7 @@ FluidSim3::FluidSim3()
 	voxNum=0;
 	voxMap=0;
 	incoming=0;
+	voxMapAvg=0;
 	areaScale=1;
 	boundaryObj=0;
 	firstObj=0;
@@ -20,6 +21,7 @@ FluidSim3::FluidSim3()
 	wallVoxMap=0;
 	
 	scene3D.setRenderImage(&img);
+	transScene.setRenderImage(new WidapImage(img.getWdth(), img.getHght()));
 	//zBuffer=0;
 	
 	printUpdates=1;
@@ -32,17 +34,21 @@ FluidSim3::FluidSim3()
 	camPos=Vctr3<double>(0, 0, 0);*/
 	
 	cam=&scene3D.cam0;
+	transScene.cam=cam;
 	
+	renderBoundry=0;
 	renderWalls=1;
 	renderFluid=0;
+	renderFlowLines=0;
 	calcObjAreaRes=0;
 	maxWallForce=1.0;
+	maxDisplayDensity=2.0;
 	
 	startTotalMass=0;
 	totalMass=0;
 	addedMass=0;
 	escapedMass=0;
-	polyCount=0;
+	triCount=0;
 	
 	theme.bkndClr=clr(255, 255, 255);
 	theme.fluidClr=clr(64, 64, 64);
@@ -50,6 +56,7 @@ FluidSim3::FluidSim3()
 	theme.wireThick=4;
 	theme.perimClr=clr(192, 192, 192);
 	theme.perimThick=6;
+	flowLinesClr=clr(192, 192, 192);
 	
 	///Fluid flow settings
 	
@@ -133,7 +140,7 @@ void FluidSim3::loadStl(const char * filename, Vctr3<double> center, double scal
 	
 	new Object(this, filename, color);
 	
-	strcpy(firstObj->name, filename);
+	//strcpy(firstObj->name, filename);
 	
 	//do the actual loading of the triangles
 	for (i=0; i<(int)triNum; i++)
@@ -191,40 +198,42 @@ void FluidSim3::addBoundaryObj(bool xNeg, bool xPos, bool yNeg, bool yPos, bool 
 	boundaryObj->showBB=0;
 	boundaryObj->showData=0;
 	
+	Vctr3<double> hgh(dim.x-1, dim.y-1, dim.z-1);
+	
 	if (xNeg)
 	{
-		boundaryObj->addWall(dim*Vctr3<double>(0, 0, 0), dim*Vctr3<double>(0, 1, 0), dim*Vctr3<double>(0, 0, 1));
-		boundaryObj->addWall(dim*Vctr3<double>(0, 1, 0), dim*Vctr3<double>(0, 0, 1), dim*Vctr3<double>(0, 1, 1));
+		boundaryObj->addWall(hgh*Vctr3<double>(0, 0, 0)+Vctr3<double>(0.5, 0.5, 0.5), hgh*Vctr3<double>(0, 1, 0)+Vctr3<double>(0.5, 0.5, 0.5), hgh*Vctr3<double>(0, 0, 1)+Vctr3<double>(0.5, 0.5, 0.5));
+		boundaryObj->addWall(hgh*Vctr3<double>(0, 1, 0)+Vctr3<double>(0.5, 0.5, 0.5), hgh*Vctr3<double>(0, 0, 1)+Vctr3<double>(0.5, 0.5, 0.5), hgh*Vctr3<double>(0, 1, 1)+Vctr3<double>(0.5, 0.5, 0.5));
 	}
 	
 	if (yNeg)
 	{
-		boundaryObj->addWall(dim*Vctr3<double>(0, 0, 0), dim*Vctr3<double>(1, 0, 0), dim*Vctr3<double>(0, 0, 1));
-		boundaryObj->addWall(dim*Vctr3<double>(1, 0, 0), dim*Vctr3<double>(0, 0, 1), dim*Vctr3<double>(1, 0, 1));
+		boundaryObj->addWall(hgh*Vctr3<double>(0, 0, 0)+Vctr3<double>(0.5, 0.5, 0.5), hgh*Vctr3<double>(1, 0, 0)+Vctr3<double>(0.5, 0.5, 0.5), hgh*Vctr3<double>(0, 0, 1)+Vctr3<double>(0.5, 0.5, 0.5));
+		boundaryObj->addWall(hgh*Vctr3<double>(1, 0, 0)+Vctr3<double>(0.5, 0.5, 0.5), hgh*Vctr3<double>(0, 0, 1)+Vctr3<double>(0.5, 0.5, 0.5), hgh*Vctr3<double>(1, 0, 1)+Vctr3<double>(0.5, 0.5, 0.5));
 	}
 	
 	if (zNeg)
 	{
-		boundaryObj->addWall(dim*Vctr3<double>(0, 0, 0), dim*Vctr3<double>(1, 0, 0), dim*Vctr3<double>(0, 1, 0));
-		boundaryObj->addWall(dim*Vctr3<double>(1, 0, 0), dim*Vctr3<double>(0, 1, 0), dim*Vctr3<double>(1, 1, 0));
+		boundaryObj->addWall(hgh*Vctr3<double>(0, 0, 0)+Vctr3<double>(0.5, 0.5, 0.5), hgh*Vctr3<double>(1, 0, 0)+Vctr3<double>(0.5, 0.5, 0.5), hgh*Vctr3<double>(0, 1, 0)+Vctr3<double>(0.5, 0.5, 0.5));
+		boundaryObj->addWall(hgh*Vctr3<double>(1, 0, 0)+Vctr3<double>(0.5, 0.5, 0.5), hgh*Vctr3<double>(0, 1, 0)+Vctr3<double>(0.5, 0.5, 0.5), hgh*Vctr3<double>(1, 1, 0)+Vctr3<double>(0.5, 0.5, 0.5));
 	}
 	
 	if (xPos)
 	{
-		boundaryObj->addWall(dim*Vctr3<double>(1, 0, 0), dim*Vctr3<double>(1, 1, 0), dim*Vctr3<double>(1, 0, 1));
-		boundaryObj->addWall(dim*Vctr3<double>(1, 1, 0), dim*Vctr3<double>(1, 0, 1), dim*Vctr3<double>(1, 1, 1));
+		boundaryObj->addWall(hgh*Vctr3<double>(1, 0, 0)+Vctr3<double>(0.5, 0.5, 0.5), hgh*Vctr3<double>(1, 1, 0)+Vctr3<double>(0.5, 0.5, 0.5), hgh*Vctr3<double>(1, 0, 1)+Vctr3<double>(0.5, 0.5, 0.5));
+		boundaryObj->addWall(hgh*Vctr3<double>(1, 1, 0)+Vctr3<double>(0.5, 0.5, 0.5), hgh*Vctr3<double>(1, 0, 1)+Vctr3<double>(0.5, 0.5, 0.5), hgh*Vctr3<double>(1, 1, 1)+Vctr3<double>(0.5, 0.5, 0.5));
 	}
 	
 	if (yPos)
 	{
-		boundaryObj->addWall(dim*Vctr3<double>(0, 1, 0), dim*Vctr3<double>(1, 1, 0), dim*Vctr3<double>(0, 1, 1));
-		boundaryObj->addWall(dim*Vctr3<double>(1, 1, 0), dim*Vctr3<double>(0, 1, 1), dim*Vctr3<double>(1, 1, 1));
+		boundaryObj->addWall(hgh*Vctr3<double>(0, 1, 0)+Vctr3<double>(0.5, 0.5, 0.5), hgh*Vctr3<double>(1, 1, 0)+Vctr3<double>(0.5, 0.5, 0.5), hgh*Vctr3<double>(0, 1, 1)+Vctr3<double>(0.5, 0.5, 0.5));
+		boundaryObj->addWall(hgh*Vctr3<double>(1, 1, 0)+Vctr3<double>(0.5, 0.5, 0.5), hgh*Vctr3<double>(0, 1, 1)+Vctr3<double>(0.5, 0.5, 0.5), hgh*Vctr3<double>(1, 1, 1)+Vctr3<double>(0.5, 0.5, 0.5));
 	}
 	
 	if (zPos)
 	{
-		boundaryObj->addWall(dim*Vctr3<double>(0, 0, 1), dim*Vctr3<double>(1, 0, 1), dim*Vctr3<double>(0, 1, 1));
-		boundaryObj->addWall(dim*Vctr3<double>(1, 0, 1), dim*Vctr3<double>(0, 1, 1), dim*Vctr3<double>(1, 1, 1));
+		boundaryObj->addWall(hgh*Vctr3<double>(0, 0, 1)+Vctr3<double>(0.5, 0.5, 0.5), hgh*Vctr3<double>(1, 0, 1)+Vctr3<double>(0.5, 0.5, 0.5), hgh*Vctr3<double>(0, 1, 1)+Vctr3<double>(0.5, 0.5, 0.5));
+		boundaryObj->addWall(hgh*Vctr3<double>(1, 0, 1)+Vctr3<double>(0.5, 0.5, 0.5), hgh*Vctr3<double>(0, 1, 1)+Vctr3<double>(0.5, 0.5, 0.5), hgh*Vctr3<double>(1, 1, 1)+Vctr3<double>(0.5, 0.5, 0.5));
 	}
 }
 
@@ -288,10 +297,7 @@ void FluidSim3::init(bool ignoreLowRam)
 	if (!voxMap) //dynamic memory error
 	{
 		std::cerr << "FluidSim3::init(): voxel voxMap failed to initialize\n";
-		dim=Vctr3<int>();
-		voxNum=0;
-		voxMap=0;
-		incoming=0;
+		uninit();
 		return;
 	}
 	
@@ -300,11 +306,16 @@ void FluidSim3::init(bool ignoreLowRam)
 	if (!incoming) //dynamic memory error
 	{
 		std::cerr << "FluidSim3::init(): voxel incoming failed to initialize\n";
-		dim=Vctr3<int>();
-		delete[] voxMap;
-		voxNum=0;
-		voxMap=0;
-		incoming=0;
+		uninit();
+		return;
+	}
+	
+	voxMapAvg=new FluidVoxel[voxNum];
+	
+	if (!voxMapAvg) //dynamic memory error
+	{
+		std::cerr << "FluidSim3::init(): voxel voxMapAvg failed to initialize\n";
+		uninit();
 		return;
 	}
 	
@@ -313,12 +324,7 @@ void FluidSim3::init(bool ignoreLowRam)
 	if (!wallVoxMap) //dynamic memory error
 	{
 		std::cerr << "FluidSim3::init(): wallVoxMap failed to initialize\n";
-		dim=Vctr3<int>();
-		delete[] voxMap;
-		delete[] incoming;
-		voxNum=0;
-		voxMap=0;
-		incoming=0;
+		uninit();
 		return;
 	}
 	
@@ -346,6 +352,10 @@ void FluidSim3::init(bool ignoreLowRam)
 		//voxMap[i].lock=0;
 		
 		incoming[i]=NULL_VOXEL;
+		
+		voxMapAvg[i].density=0;
+		voxMapAvg[i].cntr=Vctr3<float>();
+		voxMapAvg[i].vel=Vctr3<float>();
 		
 		startTotalMass+=voxMap[i].density;
 	}
@@ -401,12 +411,16 @@ void FluidSim3::uninit()
 	if (incoming)
 		delete[] incoming;
 	
+	if (voxMapAvg)
+		delete[] voxMapAvg;
+	
 	if (wallVoxMap)
 		delete[] wallVoxMap;
 	
 	voxNum=0;
 	voxMap=0;
 	incoming=0;
+	voxMapAvg=0;
 	wallVoxMap=0;
 	
 	if (printUpdates)
@@ -907,6 +921,9 @@ double FluidSim3::applyIncoming(int vox)
 		//voxMap[vox].cntr=Vctr3<float>(0.5, 0.5, 0.5);//incoming[vox].cntr/dn;
 		voxMap[vox].cntr=incoming[vox].cntr/dn;
 		voxMap[vox].vel=incoming[vox].vel/dn;
+		
+		voxMapAvg[vox].density+=dn;
+		voxMapAvg[vox].vel+=voxMap[vox].vel;
 	}
 	else
 		voxMap[vox]=NULL_VOXEL;
@@ -1030,9 +1047,36 @@ void FluidSim3::render()
 	
 	img.clrFill(theme.bkndClr);
 	
-	showBoundary();
+	if (renderBoundry)
+		showBoundary();
 	
-	showObjects();
+	if (renderFlowLines)
+		showFlowLines();
+	
+	if (renderWalls)
+		showObjects();
+	
+	triCount=0;
+	
+	triCount+=scene3D.getTriCount();
+	
+	scene3D.render();
+	scene3D.clearTriList();
+	
+	if (transScene.getTriCount())
+	{
+		if (transScene.getRenderImage()->getDim()!=cam->dim)
+		{
+			transScene.getRenderImage()->newImage(cam->dim);
+		}
+		
+		triCount+=transScene.getTriCount();
+		
+		transScene.render();
+		transScene.clearTriList();
+		
+		scene3D.zComposite(&transScene, 1);
+	}
 	
 	///render actual fluid with threads
 	
@@ -1096,27 +1140,100 @@ void FluidSim3::showBoundary()
 
 void FluidSim3::showObjects()
 {
-	if (renderWalls)
+	Object * ptr=firstObj;
+	
+	while (ptr)
 	{
-		Object * ptr=firstObj;
+		ptr->addToScene();
 		
-		while (ptr)
+		ptr=ptr->nxtObj;
+	}
+}
+
+void FluidSim3::showFlowLines()
+{
+	const int sections=3; //how many sections each line is made up of (3 is triangular prisms)
+	const int sctnsY=4, sctnsZ=4; //the number of lines in the grid
+	Vctr3<double> startPos, posPrv, posNxt, vertsPrv[sections], vertsNxt[sections]; //various positions that need to be remembered
+	Vctr3<double> ofstZ, ofstX, ofstY; //used in math, I wrote it but I don't really remember what they mean anymore. but hay, it works (for now).
+	double ang=deg2rad(360.0/sections), rds; //used in math
+	FluidVoxel * vox; //a pointer to the current voxel
+	int counter, i, y, z;
+	const int MAX_COUNT=256; //max number of segments in each line
+	const double SEGMENT_LNG=0.5; //length of a segment
+	const double SEGMENT_RDS=0.25; //radius of the lines
+	RGBpix color=flowLinesClr;
+	
+	if (frame<=0)
+		return;
+	
+	for (y=0; y<sctnsY; y++)
+	{
+		for (z=0; z<sctnsZ; z++)
 		{
-			ptr->addToScene();
+			startPos=Vctr3<double>(0, grdnt(y, -1, sctnsY, 0, dim.y), grdnt(z, -1, sctnsZ, 0, dim.z));
 			
-			ptr=ptr->nxtObj;
+			posPrv=startPos;
+			
+			for (i=0; i<sections; ++i)
+			{
+				vertsPrv[i]=startPos-dim/2;
+			}
+			
+			counter=0;
+			
+			rds=SEGMENT_RDS;
+			
+			while (posPrv.isInside(dim) && counter<MAX_COUNT)
+			{
+				vox=&voxMapAvg[(int)posPrv.x+(int)posPrv.y*dim.x+(int)posPrv.z*dim.x*dim.y];
+				
+				if (vox->density/frame<=0.1 || vox->vel.dstSquared()==0)
+					break;
+				
+				color=hsl2rgb(clrHSL(grdnt(clamp(vox->density/frame, 0, maxDisplayDensity), 0, maxDisplayDensity, 255*4, 0), 255, 255));
+				
+				//posNxt=posPrv+vox->vel*vox->density*SEGMENT_LNG/(frame*frame);
+				posNxt=posPrv+vox->vel.normalized()*SEGMENT_LNG;
+				
+				//rds=clamp(vox->density*SEGMENT_RDS/frame, 0.1, 4.0);
+				
+				ofstZ=posNxt-posPrv;
+				
+				if (!ofstZ.x && !ofstZ.y)
+					ofstX=Vctr3<double>::cross(ofstZ, Vctr3<double>(0, 1, 0));
+				else
+					ofstX=Vctr3<double>::cross(ofstZ, Vctr3<double>(0, 0, 1));
+				
+				ofstX=ofstX.normalized()*rds;
+				
+				ofstY=Vctr3<double>::cross(ofstZ, ofstX);
+				
+				ofstY=ofstY.normalized()*rds;
+				
+				for (i=0; i<sections; ++i)
+				{
+					//verts[1]=posNxt+ofstX*cos((i+0.0)*ang)+ofstY*sin((i+0.0)*ang)-dim/2;
+					vertsNxt[i]=posNxt+ofstX*cos((i+0.5)*ang)+ofstY*sin((i+0.5)*ang)-dim/2;
+					
+					//verts[3]=posNxt+ofstX*cos((i+1.0)*ang)+ofstY*sin((i+1.0)*ang)-dim/2;
+					vertsNxt[(i+1)%sections]=posNxt+ofstX*cos((i+1.5)*ang)+ofstY*sin((i+1.5)*ang)-dim/2;
+					
+					transScene.addTriangle(vertsNxt[i], vertsNxt[(i+1)%sections], vertsPrv[i], color, flowLinesShadeless);
+					transScene.addTriangle(vertsNxt[(i+1)%sections], vertsPrv[(i+1)%sections], vertsPrv[i], color, flowLinesShadeless);
+				}
+				
+				for (i=0; i<sections; ++i)
+				{
+					vertsPrv[i]=vertsNxt[i];
+				}
+				
+				posPrv=posNxt;
+				
+				++counter;
+			}
+			
 		}
-		
-		
-		///render with the 3D scene
-		
-		//scene3D.setCamRot(cam->rot.x, cam->rot.z);
-		//scene3D.setCamPos(camPos);
-		//scene3D.setCamFov(camFov);
-		//scene3D.setCamScale(scale);
-		scene3D.render();
-		scene3D.clearTriList();
-		
 	}
 }
 
@@ -1225,11 +1342,12 @@ void FluidSim3::renderFluidPrsp(FluidSim3 * obj, int threadId, int threadNum)
 {
 	int x, y, yo; //yo is y-offset aka y*dim.x, it speeds things up from calculating it each time
 	Vctr3<int> pos;
-	double depthScale=obj->dim.dst()*4;
 	float * zBuffer=obj->scene3D.getZBuffer();
 	float zVal;
 	Scene3D::Cam * cam=obj->cam;
 	Vctr3<double> depthFactor;
+	Vctr3<double> camPos=(Vctr3<double>)obj->dim/2.0+cam->pos;
+	double near=std::max(cam->pos.dst()-obj->dim.dst()/2, 0.0), far=std::max(cam->pos.dst()+obj->dim.dst()/2, 0.0);
 	
 	double depth;
 	double sum, val;
@@ -1251,8 +1369,8 @@ void FluidSim3::renderFluidPrsp(FluidSim3 * obj, int threadId, int threadNum)
 			
 			depthFactor=Vctr3<double>(
 				sin(deg2rad((x-cam->dim.x/2)*cam->fov/cam->dim.x)),
-				cos(deg2rad((x-cam->dim.x/2)*cam->fov/cam->dim.x-cam->dim.x/2))*cos(deg2rad((y-cam->dim.x/2)*cam->fov/cam->dim.x)),
-				sin(deg2rad((y-cam->dim.x/2)*cam->fov/cam->dim.x-cam->dim.y/2)));
+				cos(deg2rad((x-cam->dim.x/2)*cam->fov/cam->dim.x))*cos(deg2rad((y-cam->dim.y/2)*cam->fov/cam->dim.x)),
+				sin(deg2rad((y-cam->dim.y/2)*cam->fov/cam->dim.x)));
 			
 			ang=atan2(depthFactor.z, depthFactor.y)+deg2rad(cam->rot.x-90);
 			lng=dst(depthFactor.z, depthFactor.y);
@@ -1267,23 +1385,27 @@ void FluidSim3::renderFluidPrsp(FluidSim3 * obj, int threadId, int threadNum)
 			depthFactor.y=sin(ang)*lng;
 			
 			if (zBuffer)
-				zVal=std::min(zBuffer[x+yo], (float)depthScale);
+				zVal=std::min(zBuffer[x+yo], (float)far);
+				//zVal=zBuffer[x+yo]<INFINITY?0:far;
 			else
-				zVal=depthScale;
+				zVal=far;
 			
 			//for (depth=-depthScale; depth<depthScale; ++depth)
-			for (depth=0; depth<zVal; ++depth)
+			for (depth=near; depth<zVal; ++depth)
 			//for (depth=-depthScale; depth<0; ++depth)
 			{
-				pos=depthFactor*depth+cam->pos+obj->dim/2;
+				pos=(camPos+depthFactor*depth).floor();
+				//pos=depthFactor*depth+cam->pos+obj->dim/2;
 				
 				if (pos.isInside(obj->dim))
 				{
-					val=obj->voxMap[(pos.z*obj->dim.y+pos.y)*obj->dim.x+pos.x].density;
+					val=obj->voxMapAvg[(pos.z*obj->dim.y+pos.y)*obj->dim.x+pos.x].density/obj->frame;
+					//val=obj->voxMap[(pos.z*obj->dim.y+pos.y)*obj->dim.x+pos.x].density;
+					
 					//val=obj->voxMap[(pos.z*obj->dim.y+pos.y)*obj->dim.x+pos.x].density*(obj->voxMap[(pos.z*obj->dim.y+pos.y)*obj->dim.x+pos.x].vel-obj->startVel*areaScale).dst();
 					
-					//if (val>6)
-					sum+=val;
+					if (val>1)
+						sum+=val-1;
 				}
 			}
 			

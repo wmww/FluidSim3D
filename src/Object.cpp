@@ -19,12 +19,13 @@ FluidSim3::Object::Object(FluidSim3 * simPtr, const char * objName, RGBpix objCl
 	firstWall=0;
 	
 	showWalls=1;
-	showBB=1;
-	showData=1;
+	showBB=0;
+	showData=0;
 	//showBBExpand=0.02;
 	showBBExpand=0;
 	showBBThick=0.15;
 	showDataSize=1;
+	showWallForce=0;
 	wallClr=objClr;
 	bbClr=objClr;
 	dataClr=clr(0, 255, 0);
@@ -158,23 +159,19 @@ void FluidSim3::Object::addToScene()
 	
 	if (showWalls)
 	{
-		RGBpix color;
+		RGBpix color=wallClr;
 		double force;
 		//Vctr3<double> force;
 		while (wall)
 		{
-			//force=clamp(grdnt(wall->force[0].dst()+wall->force[1].dst()+wall->force[2].dst(), 0, 6*wall->area, 0, 1), 0, 1);
-			force=clamp(grdnt(wall->totalForce[0].dst()+wall->totalForce[1].dst()+wall->totalForce[2].dst(), 0, sim->maxWallForce*wall->area*framesSinceReset, 0, 1), 0, 1);
-			//force=clamp(grdnt(wall->totalForce[0].x+wall->totalForce[1].x+wall->totalForce[2].x, 0, maxWallForce*wall->area*frame, 0, 1), 0, 1);
-			
-			//force=(wall->totalForce[0]+wall->totalForce[1]+wall->totalForce[2])/(maxWallForce*wall->area*frame);
-			
-			color=hsl2rgb(clrHSL((1-force)*255*4, 255, force*192+64));
-			//color=clr(clamp(force.x*128+127, 0, 255), clamp(force.y*128+127, 0, 255), clamp(force.z*128+127, 0, 255));
-			//color=clr(clamp(force.x*128+127, 0, 255), clamp(127-force.x*128, 0, 255), clamp(127-force.x*128, 0, 255));
-			
-			if (framesSinceReset<32)
-				blend(&color, wallClr, (32.0-framesSinceReset)/9.0);
+			if (showWallForce)
+			{
+				force=clamp(grdnt(wall->totalForce[0].dst()+wall->totalForce[1].dst()+wall->totalForce[2].dst(), 0, sim->maxWallForce*wall->area*framesSinceReset, 0, 1), 0, 1);
+				
+				color=hsl2rgb(clrHSL((1-force)*255*4, 255, force*192+64));
+				if (framesSinceReset<32)
+					blend(&color, wallClr, (32.0-framesSinceReset)/9.0);
+			}
 			
 			sim->scene3D.addTriangle(wall->vert[0]-vertOffset, wall->vert[1]-vertOffset, wall->vert[2]-vertOffset, color, false);
 			

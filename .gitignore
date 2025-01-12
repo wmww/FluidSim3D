@@ -6,6 +6,7 @@
 #3D data files
 *.stl
 *.blend
+*.dea
 
 #codeblocks project files
 *.cbp

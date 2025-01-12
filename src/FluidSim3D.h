@@ -73,6 +73,7 @@ public:
 		double showBBExpand; //how much to expand the bounding box when displayed (proportional to object size)
 		double showBBThick; //the thickness of the bounding box when displayed
 		double showDataSize; //the text height
+		bool showWallForce; //if to make the wall colors dependent on the force on the walls
 		RGBpix wallClr; //the color it will be rendered (actually it doesn't really do anything because of colored force collor picking)
 		RGBpix bbClr, dataClr; //the color they will be rendered
 		
@@ -85,11 +86,11 @@ public:
 	struct FluidVoxel
 	{
 		float density; //amount of fluid in the voxel
-		Vctr3<float>cntr; //from 0 to 1, the center of mass of the voxel
-		Vctr3<float>vel; //average velocity
+		Vctr3<float> cntr; //from 0 to 1, the center of mass of the voxel
+		Vctr3<float> vel; //average velocity
 		//float deviation; //velocity deviation
 		//float xSD, ySD; //velocity standard deviation
-
+		
 		//char lock; //used to lock the voxel from being changed by multiple threads at once
 	};
 	
@@ -161,9 +162,13 @@ public:
 	double wallBounciness; //how bouncy walls are
 	
 	RenderTheme theme; //the visual theme for how to render, not really used much with the new renderer
-	bool renderWalls, renderFluid; //if to render the various elements
+	RGBpix flowLinesClr; //the color of the flow lines
+	bool flowLinesShadeless; //if to render the flow lines shadeless
+	
+	bool renderBoundry, renderWalls, renderFluid, renderFlowLines; //if to render the various elements
 	int calcObjAreaRes; //the resolution at which to calculate object directional area, if 0 (default) area will not be automatically calculated
 	double maxWallForce; //only affects rendering; the highest wall force that can be displayed
+	double maxDisplayDensity; //only affects rendering; the highest density that can be shown (higher should be clamped)
 	
 	///stats
 	
@@ -174,7 +179,7 @@ public:
 	
 	std::mutex areaDataMutex; //gets locked when changing area stats like total mass and stuff
 	
-	int polyCount; //number of polygons
+	int triCount; //number of polygons
 	
 	Scene3D::Cam * cam;
 	
@@ -189,6 +194,7 @@ private:
 
 	FluidVoxel * voxMap; //the data for the simulation area
 	FluidVoxel * incoming; //the data coming from other voxels
+	FluidVoxel * voxMapAvg; //the average data for the whole simulation
 	Vctr3<int> dim;
 	double areaScale;
 	double wallVoxDimScale; //what to multiply dim by to get wallVoxDim, actual wallVoxDim should be used most places because that could be set differently in the future
@@ -204,7 +210,7 @@ private:
 	
 	///render vars
 	
-	Scene3D scene3D;
+	Scene3D scene3D, transScene;
 	
 	
 	///const settings
@@ -217,8 +223,9 @@ private:
 	
 	///render functions
 	
-	void showBoundary();
-	void showObjects();
+	void showBoundary(); //add a box around the area to the 3D scene
+	void showObjects(); //add all the objects to the 3D scene
+	void showFlowLines(); //add flow lines to 3D scene to show fluid flow
 	static void renderFluidOrtho(FluidSim3 * obj, int threadId, int threadNum); //should be called after any mesh rendering, can be called on many threads at once
 	static void renderFluidPrsp(FluidSim3 * obj, int threadId, int threadNum); //should be called after any mesh rendering, can be called on many threads at once
 };
